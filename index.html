@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>FX Sentinel Pro – AI per il Forex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FX Sentinel Pro è la tua intelligenza artificiale per analizzare Forex, news, sentiment e volumi in un'unica dashboard." />
+
+  <!-- Font Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-main: #050910;
+      --bg-alt: #0b111a;
+      --primary: #00f0ff;
+      --primary-soft: #009fbf;
+      --text-main: #ffffff;
+      --text-muted: #9caec4;
+      --card-bg: #101722;
+      --border-soft: #182233;
+      --danger: #ff4b6a;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #071625 0, #050910 38%, #020309 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(5, 9, 16, 0.95), rgba(5, 9, 16, 0.85));
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      background: radial-gradient(circle at 30% 0%, #00f0ff 0, #00a0b5 35%, #050910 90%);
+      box-shadow: 0 0 18px rgba(0, 240, 255, 0.33);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      opacity: 0.85;
+      transition: opacity 0.18s ease, color 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 240, 255, 0.6);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      background: radial-gradient(circle at top left, rgba(0, 240, 255, 0.18), transparent 60%);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    section {
+      padding: 60px 18px;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      background: rgba(4, 18, 30, 0.9);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw + 1rem, 3.4rem);
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+
+    .hero-grad {
+      background: linear-gradient(120deg, #ffffff 0, #c5eaff 45%, #00f0ff 80%);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+
+    .hero-list {
+      list-style: none;
+      margin-bottom: 26px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .hero-list li {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 8px;
+    }
+
+    .hero-list li span {
+      font-size: 1rem;
+      color: var(--primary);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      border: none;
+      outline: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 11px 22px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 0 0, #00f0ff 0, #009fbf 35%, #004f63 100%);
+      color: #020309;
+      box-shadow: 0 0 22px rgba(0, 240, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 28px rgba(0, 240, 255, 0.6);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(10, 20, 35, 0.9);
+      color: var(--primary);
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      opacity: 0.85;
+    }
+
+    /* Hero card destra */
+    .hero-card {
+      background: radial-gradient(circle at top, #101827 0, #050910 65%);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(0, 240, 255, 0.16);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 10% 0%, rgba(0, 240, 255, 0.18), transparent 55%),
+                  radial-gradient(circle at 90% 100%, rgba(0, 116, 163, 0.15), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hc-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.7rem;
+    }
+
+    .hc-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .hc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+
+    .hc-item {
+      background: rgba(3, 10, 20, 0.9);
+      border-radius: 10px;
+      padding: 8px 9px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .value {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .value-pos {
+      color: #4ade80;
+    }
+
+    .value-neg {
+      color: var(--danger);
+    }
+
+    .hc-badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .hc-badge {
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+    }
+
+    .hc-footer {
+      margin-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 620px;
+      margin-bottom: 26px;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 16px 16px 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.87rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step-num {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--primary-soft);
+      margin-bottom: 4px;
+    }
+
+    .dash {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .dash-art {
+      border-radius: 16px;
+      padding: 14px;
+      background: radial-gradient(circle at top, #101827 0, #050910 70%);
+      border: 1px solid rgba(0, 240, 255, 0.18);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.6);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .dash-bar {
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #00f0ff, #00bcd4, #0069ff);
+      margin: 6px 0 10px;
+    }
+
+    .dash-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      margin-bottom: 4px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .roadmap {
+      display: grid;
+      gap: 14px;
+      font-size: 0.88rem;
+    }
+
+    .rm-item {
+      border-left: 2px solid rgba(0, 240, 255, 0.5);
+      padding-left: 10px;
+    }
+
+    .rm-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .rm-text {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .beta-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .beta-form {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+      font-size: 0.86rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    input, select, textarea {
+      background: #050910;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 8px 10px;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.35);
+    }
+
+    textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    .beta-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* LEGAL */
+    .legal-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 22px;
+    }
+
+    .legal-box {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .legal-box h3 {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .legal-box h4 {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    .legal-box p {
+      margin-bottom: 6px;
+    }
+
+    .legal-box ul {
+      padding-left: 16px;
+      margin-bottom: 6px;
+    }
+
+    .legal-box li {
+      margin-bottom: 3px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 16px 18px 22px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .dash,
+      .beta-grid,
+      .legal-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-grid {
+        gap: 26px;
+      }
+
+      .hero-card {
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      section {
+        padding: 40px 16px;
+      }
+
+      .three-col,
+      .steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <span>FX SENTINEL PRO</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#features">Funzioni</a>
+        <a href="#how">Come funziona</a>
+        <a href="#pricing">Piani</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#legal">Note legali</a>
+        <a href="#beta" class="nav-cta">Beta Access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Accesso Beta • Posti limitati
+          </div>
+
+          <h1 class="hero-title">
+            La tua <span class="hero-grad">AI per il Forex</span> in un’unica dashboard.
+          </h1>
+
+          <p class="hero-sub">
+            FX Sentinel Pro legge news, sentiment e volumi, filtra il rumore e ti mostra solo i momenti davvero interessanti per il tuo trading.
+          </p>
+
+          <ul class="hero-list">
+            <li><span>✓</span> Analisi automatica di news &amp; sentiment di mercato</li>
+            <li><span>✓</span> Zone a maggior probabilità evidenziate con volumi e range</li>
+            <li><span>✓</span> Backtest con KPI chiari prima di rischiare capitale reale</li>
+          </ul>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="document.getElementById('beta').scrollIntoView({behavior:'smooth'})">
+              Richiedi accesso alla Beta
+            </button>
+            <button class="btn btn-ghost" onclick="document.getElementById('roadmap').scrollIntoView({behavior:'smooth'})">
+              Guarda la roadmap →
+            </button>
+          </div>
+
+          <div class="hero-note">
+            Nessuna carta richiesta in questa fase. Solo trader seri interessati a testare l’AI sul Forex.
+          </div>
+        </div>
+
+        <!-- Card demo destra -->
+        <aside class="hero-card" aria-label="Anteprima dashboard FX Sentinel Pro">
+          <div class="hero-card-inner">
+            <div class="hc-header">
+              <span>Dashboard • FX</span>
+              <span class="hc-pill">EUR/USD • H1</span>
+            </div>
+
+            <div class="hc-title">
+              Sentiment &amp; volumi allineati
+            </div>
+
+            <div class="hc-grid">
+              <div class="hc-item">
+                <div class="label">Sentiment</div>
+                <div class="value value-pos">Bullish 68%</div>
+              </div>
+              <div class="hc-item">
+                <div class="label">News impatto</div>
+                <div class="value value-neg">Medio / Alto</div>
+              </div>
+              <div class="hc-item">
+                <div class="label">Range H1</div>
+                <div class="value">23.4 pips</div>
+              </div>
+              <div class="hc-item">
+                <div class="label">Volumi</div>
+                <div class="value">+32% vs media</div>
+              </div>
+            </div>
+
+            <div class="hc-badge-row">
+              <span class="hc-badge">Zona di interesse 1.0830 – 1.0850</span>
+              <span class="hc-badge">Alert attivo se breakout</span>
+            </div>
+
+            <div class="hc-footer">
+              <span>Backtest setup: Win rate 57% • R/R 1:1.9</span>
+              <span>Ultimo update: 14 sec fa</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PER CHI È / FEATURES -->
+    <section id="features">
+      <div class="container">
+        <h2 class="section-title">Per chi è FX Sentinel Pro?</h2>
+        <p class="section-sub">
+          Per trader che vogliono decisioni più lucide, meno stress e un’analisi di livello professionale
+          senza vivere incollati al grafico.
+        </p>
+
+        <div class="three-col" style="margin-bottom: 32px;">
+          <div class="card">
+            <h3>Trader part–time</h3>
+            <p>Hai poco tempo e vuoi solo i momenti con reale vantaggio statistico, non 100 notifiche inutili al giorno.</p>
+          </div>
+          <div class="card">
+            <h3>Trader discrezionali</h3>
+            <p>Usi price action, livelli chiave e news, ma ti manca un copilota che unisca tutto in una sola vista.</p>
+          </div>
+          <div class="card">
+            <h3>Formatori &amp; creator</h3>
+            <p>Dai più valore alla tua community mostrando analisi AI, backtest e KPI chiari a supporto delle tue idee.</p>
+          </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 6px;">Tre motori, un’unica AI</h2>
+        <p class="section-sub">
+          FX Sentinel Pro lavora su tre pilastri principali: notizie, sentiment e volumi, con uno strato di backtest
+          e notifiche intelligenti.
+        </p>
+
+        <div class="three-col">
+          <div class="card">
+            <h3>News &amp; Sentiment AI</h3>
+            <p>La piattaforma legge news, calendari economici e flussi social, assegnando un sentiment score a ogni coppia Forex.</p>
+          </div>
+          <div class="card">
+            <h3>Volumi &amp; zone chiave</h3>
+            <p>Evidenzia aree dove price action e volumi si concentrano, limitando segnali rumorosi e poco interessanti.</p>
+          </div>
+          <div class="card">
+            <h3>Backtest &amp; KPI</h3>
+            <p>Test su 5–10 anni di storico con KPI fondamentali: profitto, drawdown, % win, risk/reward medio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COME FUNZIONA -->
+    <section id="how" style="background: var(--bg-alt);">
+      <div class="container">
+        <h2 class="section-title">Come funziona, in 3 passi</h2>
+        <p class="section-sub">
+          Nessun setup complicato: imposti il tuo profilo di rischio, l’AI lavora in background e ricevi alert chiari e sintetici.
+        </p>
+
+        <div class="steps">
+          <div class="card">
+            <div class="step-num">Passo 1</div>
+            <h3>Imposta il tuo profilo</h3>
+            <p>Scegli coppie Forex, timeframe e quanto vuoi che i segnali siano selettivi. L’AI si adatta al tuo stile.</p>
+          </div>
+          <div class="card">
+            <div class="step-num">Passo 2</div>
+            <h3>L’AI analizza in continuo</h3>
+            <p>Legge news, sentiment, volumi e dati storici, filtrando il rumore e costruendo un contesto chiaro.</p>
+          </div>
+          <div class="card">
+            <div class="step-num">Passo 3</div>
+            <h3>Ricevi alert azionabili</h3>
+            <p>Alert con contesto di mercato, direzione probabile e zone TP/SL suggerite. Tu resti sempre il decisore finale.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD MOCKUP -->
+    <section>
+      <div class="container dash">
+        <div>
+          <h2 class="section-title">Una dashboard pensata per trader, non per sviluppatori</h2>
+          <p class="section-sub">
+            Layout 16:9, multilingua, widget essenziali e nessuna distrazione inutile.
+            Pochi pannelli, ma quelli che servono davvero: sentiment, news, volumi, KPI e alert.
+          </p>
+          <ul class="hero-list">
+            <li><span>✓</span> Pannello sentiment live per ogni coppia selezionata</li>
+            <li><span>✓</span> Lista news filtrate per impatto e rilevanza</li>
+            <li><span>✓</span> Sezione backtest con KPI visuali</li>
+            <li><span>✓</span> Notifiche programmabili (email / integrazioni future)</li>
+          </ul>
+        </div>
+
+        <div class="dash-art">
+          <div class="dash-row">
+            <span>FX Sentinel Pro • Preview UI</span>
+            <span>Demo</span>
+          </div>
+          <div class="dash-bar"></div>
+          <div class="dash-row">
+            <span>Selettore coppie</span>
+            <span>EUR/USD · GBP/USD · XAU/USD</span>
+          </div>
+          <div class="dash-row">
+            <span>Sentiment medio</span>
+            <span style="color:#4ade80;">Bullish 61%</span>
+          </div>
+          <div class="dash-row">
+            <span>Alert attivi</span>
+            <span>4 (2 H1 · 2 H4)</span>
+          </div>
+          <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 12px 0;" />
+          <div class="dash-row">
+            <span>Backtest strategy "London Breakout"</span>
+            <span style="color:#fbbf24;">R/R 1 : 1.8</span>
+          </div>
+          <div class="dash-row">
+            <span>Win rate 52% • Max DD -11.3%</span>
+            <span>Periodo: 2016–2025</span>
+          </div>
+          <p style="margin-top: 10px;">
+            Questa è una preview concettuale dell’interfaccia reale: ciò che vedi sarà la base della dashboard live.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIANI & PREZZI -->
+    <section id="pricing" style="background: var(--bg-alt);">
+      <div class="container">
+        <h2 class="section-title">Piani &amp; prezzi (fase pre-lancio)</h2>
+        <p class="section-sub">
+          In questo momento stiamo raccogliendo una piccola lista di trader Beta.
+          Nessun pagamento richiesto: i piani verranno attivati solo dopo i test iniziali.
+        </p>
+
+        <div class="three-col">
+          <div class="card">
+            <div class="pill">Disponibile ora</div>
+            <h3>Beta Tester</h3>
+            <p>
+              Accesso anticipato, contatto diretto con il team e condizioni speciali riservate per quando i piani Pro saranno online.
+            </p>
+          </div>
+          <div class="card">
+            <div class="pill">Coming soon</div>
+            <h3>Pro Mensile</h3>
+            <p>
+              Tutte le funzioni AI, backtest e notifiche, con aggiornamenti continui inclusi. Prezzo pensato per trader seri, non per curiosi.
+            </p>
+          </div>
+          <div class="card">
+            <div class="pill">Coming soon</div>
+            <h3>Pro Annuale</h3>
+            <p>
+              Tutto del piano mensile, con uno sconto importante rispetto al rinnovo mese per mese e accesso prioritario alle nuove feature.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap">
+      <div class="container">
+        <h2 class="section-title">Roadmap FX Sentinel Pro</h2>
+        <p class="section-sub">
+          Nessun “giocattolo” di trading: vogliamo un progetto solido, strutturato e sostenibile nel tempo.
+        </p>
+
+        <div class="roadmap">
+          <div class="rm-item">
+            <div class="rm-title">Fase 1 – Struttura legale &amp; Stripe</div>
+            <div class="rm-text">Costituzione LLC, EIN, conto dedicato e collegamento con Stripe per pagamenti futuri.</div>
+          </div>
+          <div class="rm-item">
+            <div class="rm-title">Fase 2 – Backend (cervello AI)</div>
+            <div class="rm-text">API per analisi, backtest e notifiche, integrazione con modelli AI e con le fonti dati selezionate.</div>
+          </div>
+          <div class="rm-item">
+            <div class="rm-title">Fase 3 – Dashboard 16:9</div>
+            <div class="rm-text">Dashboard web responsive, multilingua, con pannelli per coppie Forex, news, sentiment e KPI.</div>
+          </div>
+          <div class="rm-item">
+            <div class="rm-title">Fase 4 – Beta ristretta &amp; ottimizzazione</div>
+            <div class="rm-text">Accesso solo su invito, raccolta feedback dei primi utenti e rifinitura di segnali e interfaccia.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BETA FORM -->
+    <section id="beta" style="background: var(--bg-alt);">
+      <div class="container beta-grid">
+        <div>
+          <h2 class="section-title">Entra adesso nella lista Beta</h2>
+          <p class="section-sub">
+            Lascia i tuoi dati per essere contattato quando la versione Beta di FX Sentinel Pro sarà pronta.
+            Niente spam, niente promesse esagerate: solo informazioni utili sul progetto.
+          </p>
+          <ul class="hero-list">
+            <li><span>✓</span> Nessun pagamento richiesto in questa fase</li>
+            <li><span>✓</span> Posti limitati per una Beta davvero gestibile</li>
+            <li><span>✓</span> Possibilità di influenzare lo sviluppo con il tuo feedback</li>
+          </ul>
+        </div>
+
+        <form class="beta-form" onsubmit="event.preventDefault(); alert('Grazie! I tuoi dati Beta sono stati registrati (demo lato front-end).');">
+          <div class="field">
+            <label for="name">Nome</label>
+            <input id="name" name="name" type="text" placeholder="Inserisci il tuo nome" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="nome@esempio.com" required />
+          </div>
+          <div class="field">
+            <label for="type">Che tipo di trader sei?</label>
+            <select id="type" name="type">
+              <option value="principiante">Principiante</option>
+              <option value="intermedio">Intermedio</option>
+              <option value="avanzato">Avanzato</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="note">Note (facoltative)</label>
+            <textarea id="note" name="note" placeholder="Racconta in breve come operi sul Forex."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top: 4px; width: 100%;">
+            Voglio entrare nella Beta
+          </button>
+          <div class="beta-note">
+            Puoi chiedere in qualsiasi momento la cancellazione dei tuoi dati dalla lista Beta.
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- LEGAL SECTION -->
+    <section id="legal">
+      <div class="container">
+        <h2 class="section-title">Informativa privacy &amp; note legali</h2>
+        <p class="section-sub">
+          Di seguito trovi le informazioni sul trattamento dei dati personali ai sensi del GDPR e il disclaimer relativo all’uso di FX Sentinel Pro.
+        </p>
+
+        <div class="legal-wrapper">
+          <!-- BOX PRIVACY / GDPR -->
+          <div class="legal-box">
+            <h3>Informativa sul trattamento dei dati (GDPR – Regolamento UE 2016/679)</h3>
+
+            <p>Compilando il form presente in questa pagina, l’utente acconsente al trattamento dei dati personali forniti (nome, email e informazioni opzionali) per le seguenti finalità:</p>
+            <ul>
+              <li>Inserimento nella lista Beta dell’app FX Sentinel Pro;</li>
+              <li>Invio di comunicazioni informative relative al progetto, aggiornamenti e inviti al testing;</li>
+              <li>Gestione delle richieste inviate volontariamente dall’utente.</li>
+            </ul>
+
+            <p>I dati non saranno venduti, non saranno ceduti a terzi e non saranno utilizzati per finalità di marketing non richieste.</p>
+
+            <h4>Titolare del trattamento</h4>
+            <p>
+              FX Sentinel Pro – (Gianni Abbate)<br />
+              Email di contatto: <strong>[INSERISCI LA TUA EMAIL]</strong>
+            </p>
+
+            <h4>Base giuridica del trattamento</h4>
+            <p>
+              Il trattamento dei dati si basa sull’art. 6 del GDPR (consenso dell’interessato).<br />
+              L’utente può revocare il consenso in qualsiasi momento, scrivendo all’indirizzo email indicato sopra.
+            </p>
+
+            <h4>Durata di conservazione dei dati</h4>
+            <p>
+              I dati saranno conservati solo per il periodo necessario allo sviluppo e alla comunicazione della Beta
+              e comunque non oltre 24 mesi, salvo richiesta di cancellazione anticipata.
+            </p>
+
+            <h4>Diritti dell’utente</h4>
+            <p>L’utente può, in qualunque momento:</p>
+            <ul>
+              <li>chiedere l’accesso ai propri dati personali;</li>
+              <li>chiedere la rettifica o l’aggiornamento;</li>
+              <li>chiedere la cancellazione (“diritto all’oblio”);</li>
+              <li>limitare il trattamento;</li>
+              <li>opporsi al trattamento;</li>
+              <li>richiedere la portabilità dei dati.</li>
+            </ul>
+            <p>Le richieste vanno indirizzate a: <strong>[INSERISCI EMAIL]</strong></p>
+
+            <h4>Cookie</h4>
+            <p>
+              Questa landing page non installa cookie di profilazione né utilizza sistemi di tracciamento avanzato.
+              Eventuali cookie tecnici sono utilizzati esclusivamente per il corretto funzionamento del sito.
+            </p>
+          </div>
+
+          <!-- BOX DISCLAIMER TRADING -->
+          <div class="legal-box">
+            <h3>Disclaimer</h3>
+            <p>
+              FX Sentinel Pro è un progetto software sperimentale. Le informazioni e le analisi fornite dall’applicazione
+              non costituiscono in alcun modo consulenza finanziaria, sollecitazione al pubblico risparmio o invito
+              all’investimento.
+            </p>
+            <p>
+              Il trading sul Forex e su altri strumenti finanziari comporta un elevato livello di rischio, incluso il rischio
+              di perdita totale del capitale investito. L’utente è l’unico responsabile delle proprie decisioni operative
+              e dell’uso che fa delle informazioni fornite dalla piattaforma.
+            </p>
+            <p>
+              Il Titolare non garantisce risultati economici né performance future. Qualsiasi riferimento a
+              performance passate o backtest ha valore puramente informativo e non rappresenta garanzia di risultati futuri.
+            </p>
+
+            <h4>Utilizzo in modalità Beta</h4>
+            <p>
+              La versione Beta di FX Sentinel Pro è destinata esclusivamente a scopo di test e valutazione.
+              Possono verificarsi errori, bug o interruzioni del servizio. È responsabilità dell’utente verificare
+              sempre le informazioni con fonti indipendenti prima di prendere decisioni di trading.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <span>© 2025 FX Sentinel Pro – Tutti i diritti riservati</span>
+      <span>Questo sito non fornisce consulenza finanziaria. Il trading comporta rischio di perdita di capitale.</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
