@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FX Sentinel Pro – Beta Access</title>
-  <meta name="description" content="FX Sentinel Pro è la tua intelligenza artificiale per analizzare il Forex in modo semplice, rapido e strutturato. Chiedi l’accesso alla Beta.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>FX Sentinel Pro – NEXTITALIA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     :root {
-      --bg: #030712;
-      --bg-alt: #070b1a;
-      --card: #0b1220;
-      --card-alt: #0f172a;
-      --primary: #00f0ff;
-      --primary-soft: rgba(0, 240, 255, 0.1);
-      --accent: #38bdf8;
-      --border: rgba(148, 163, 184, 0.45);
-      --text: #e5e7eb;
-      --text-soft: #cbd5f5;
-      --text-muted: #94a3b8;
-      --danger: #fb7185;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.9);
-      --shadow-primary: 0 0 40px rgba(0, 240, 255, 0.4);
-      --max-width: 1120px;
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --accent: #00c4ff;
+      --accent-soft: rgba(0, 196, 255, 0.12);
+      --text: #f8fafc;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --danger: #f97373;
+      --shadow-soft: 0 24px 60px rgba(0,0,0,0.5);
+      --radius-lg: 24px;
+      --radius-pill: 999px;
     }
 
     * {
@@ -35,1390 +27,980 @@
     }
 
     body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background:
-        radial-gradient(circle at 0% 0%, #1d253b 0, transparent 40%),
-        radial-gradient(circle at 90% 0%, #122542 0, transparent 40%),
-        #020617;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120 0, #020617 55%, #000 100%);
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
     }
 
     .page {
-      min-height: 100vh;
+      max-width: 1200px;
+      width: 100%;
+      min-height: calc(100vh - 48px);
+      background: linear-gradient(145deg, #050816, #020617);
+      border-radius: 32px;
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      box-shadow: var(--shadow-soft);
+      padding: 28px 32px 32px;
       display: flex;
       flex-direction: column;
+      gap: 28px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .bg-orbit {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
+    /* Glow decorativo */
+    .page::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(56,189,248,0.24), transparent 65%);
+      top: -200px;
+      right: -120px;
+      opacity: 0.7;
       pointer-events: none;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.18), transparent 55%),
-        radial-gradient(circle at 80% 10%, rgba(56, 189, 248, 0.2), transparent 55%),
-        radial-gradient(circle at 50% 90%, rgba(59, 130, 246, 0.22), transparent 55%);
-      filter: blur(10px);
-      opacity: 0.9;
+      filter: blur(2px);
     }
 
-    .container {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    /* NAVBAR */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-        to bottom,
-        rgba(3, 7, 18, 0.98),
-        rgba(3, 7, 18, 0.9),
-        rgba(3, 7, 18, 0.65),
-        transparent
-      );
-      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
-    }
-
-    .nav {
-      height: 70px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
     }
 
-    .logo-wrap {
-      position: relative;
-      padding: 8px;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 0 0, rgba(0, 240, 255, 0.5), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.6), transparent 60%);
-      box-shadow:
-        0 0 0 1px rgba(0, 240, 255, 0.4),
-        0 16px 30px rgba(15, 23, 42, 1);
-    }
-
-    .logo {
-      width: 28px;
-      height: 28px;
-      border-radius: 12px;
-      background:
-        conic-gradient(from 210deg,
-          #00f0ff,
-          #4adeff,
-          #0ea5e9,
-          #2563eb,
-          #00f0ff);
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: radial-gradient(circle at 30% 20%, #38bdf8, #0f172a 55%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 0 22px rgba(0, 240, 255, 0.9);
     }
 
-    .logo::before {
+    .logo-mark::before {
       content: "";
       position: absolute;
-      inset: 4px;
-      border-radius: 10px;
-      background:
-        radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.4), transparent 55%),
-        radial-gradient(circle at 80% 120%, rgba(15, 23, 42, 0.95), transparent 55%);
+      inset: 7px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.7);
+      background: linear-gradient(145deg, rgba(15,23,42,0.9), rgba(15,23,42,0.3));
     }
 
-    .logo::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border-radius: 999px;
-      border: 2px solid rgba(0, 240, 255, 0.9);
-      border-top-color: transparent;
-      border-right-color: transparent;
-      transform: rotate(-30deg);
-      box-shadow: 0 0 18px rgba(0, 240, 255, 0.9);
+    .logo-mark span {
+      position: relative;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #e0f2fe;
     }
 
     .brand-text {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
     }
 
     .brand-name {
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      font-size: 0.9rem;
+      font-size: 14px;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: #f9fafb;
-    }
-
-    .brand-tagline {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .nav-links a {
-      position: relative;
-      padding-bottom: 3px;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--primary), #4adeff);
-      transition: width 0.18s ease-out;
-    }
-
-    .nav-links a:hover {
       color: #e5e7eb;
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
+    .brand-tagline {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
     }
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-pill {
-      font-size: 0.72rem;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(0, 240, 255, 0.4);
-      background: rgba(8, 47, 73, 0.8);
-      color: var(--primary);
-    }
-
-    .btn {
-      border-radius: 999px;
-      border: none;
-      padding: 7px 15px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      cursor: pointer;
+    .lang-switch {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      white-space: nowrap;
+      padding: 3px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.5);
+      box-shadow: 0 10px 30px rgba(15,23,42,0.9);
     }
 
-    .btn-outline {
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: var(--text-soft);
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.18s ease-out;
+      min-width: 60px;
+      text-align: center;
     }
 
-    .btn-outline:hover {
-      border-color: rgba(0, 240, 255, 0.7);
-      color: #f9fafb;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #00f0ff, #0ea5e9);
-      color: #020617;
-      box-shadow: 0 10px 30px rgba(0, 240, 255, 0.45);
-    }
-
-    .btn-primary:hover {
-      filter: brightness(1.05);
-      box-shadow: 0 16px 36px rgba(0, 240, 255, 0.6);
+    .lang-btn.active {
+      background: radial-gradient(circle at 30% 0, #38bdf8, #0369a1);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.9);
     }
 
     main {
-      flex: 1;
-    }
-
-    /* HERO */
-    .hero {
-      padding-top: 90px;
-    }
-
-    .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 40px;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(0, 240, 255, 0.4);
-      background: rgba(4, 18, 30, 0.9);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--primary);
-      margin-bottom: 16px;
-    }
-
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
-    }
-
-    .hero-title {
-      font-size: clamp(2.2rem, 3vw + 1rem, 3.4rem);
-      line-height: 1.18;
-      margin-bottom: 14px;
-      word-break: break-word;
-    }
-
-    .hero-grad {
-      color: var(--primary);
-      background: none;
-      -webkit-background-clip: initial;
-    }
-
-    .hero-sub {
-      color: var(--text-muted);
-      font-size: 0.98rem;
-      max-width: 520px;
-      margin-bottom: 16px;
-    }
-
-    .hero-list {
-      list-style: none;
-      display: grid;
-      gap: 6px;
-      margin-bottom: 18px;
-      font-size: 0.85rem;
-      color: var(--text-soft);
-    }
-
-    .hero-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .hero-list span {
-      color: var(--primary);
-      margin-top: 2px;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .hero-meta {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      max-width: 520px;
-    }
-
-    .hero-meta strong {
-      color: var(--text-soft);
-    }
-
-    .hero-pill-row {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 0.78rem;
-    }
-
-    .hero-pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-soft);
-    }
-
-    .hero-pill strong {
-      color: var(--text);
-    }
-
-    .hero-card {
-      position: relative;
-      border-radius: 24px;
-      padding: 18px 16px;
-      background:
-        radial-gradient(circle at 0 0, rgba(0, 240, 255, 0.18), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.25), transparent 60%),
-        linear-gradient(145deg, #020617, #020617);
-      border: 1px solid rgba(148, 163, 184, 0.65);
-      box-shadow: var(--shadow-soft), var(--shadow-primary);
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -60px;
-      background:
-        radial-gradient(circle at 0 0, rgba(0, 240, 255, 0.4), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.35), transparent 60%);
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    .hero-card-inner {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 28px;
+      align-items: stretch;
       position: relative;
       z-index: 1;
     }
 
-    .hero-card-label {
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-right: 8px;
+    }
+
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.96);
-      font-size: 0.72rem;
-      color: var(--text-soft);
-      margin-bottom: 10px;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    .hero-card-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 12px rgba(0, 240, 255, 0.9);
-    }
-
-    .hero-card-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .hero-card-sub {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-
-    .hero-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-      font-size: 0.76rem;
-    }
-
-    .metric {
-      border-radius: 14px;
-      padding: 8px 9px;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-    }
-
-    .metric-label {
-      color: var(--text-muted);
-      margin-bottom: 2px;
-    }
-
-    .metric-value {
-      color: var(--text-soft);
-      font-weight: 600;
-    }
-
-    .metric-chip {
-      margin-top: 3px;
-      font-size: 0.7rem;
-      display: inline-flex;
-      padding: 2px 6px;
-      border-radius: 999px;
-      border: 1px solid rgba(34, 197, 94, 0.7);
-      color: #bbf7d0;
-      background: rgba(22, 101, 52, 0.3);
-    }
-
-    .hero-steps {
-      margin-top: 12px;
-      display: grid;
-      gap: 6px;
-      font-size: 0.78rem;
-    }
-
-    .hero-step {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    .hero-step-num {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 0 0, #00f0ff, #2563eb);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #020617;
-      box-shadow: 0 0 14px rgba(0, 240, 255, 0.7);
-      margin-top: 2px;
-    }
-
-    .hero-step-text span {
-      display: block;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-    }
-
-    /* SECTIONS GENERIC */
-    .section {
-      padding: 30px 0;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .section-sub {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      max-width: 420px;
-    }
-
-    /* COME FUNZIONA */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .feature-card {
-      border-radius: var(--radius-lg);
-      padding: 14px 14px 12px;
-      background:
-        linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
-      border: 1px solid rgba(30, 64, 175, 0.9);
-      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.9);
-      font-size: 0.8rem;
-    }
-
-    .feature-label {
+    .eyebrow-pill {
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.72rem;
-      color: var(--primary);
-      margin-bottom: 7px;
     }
 
-    .feature-dot {
-      width: 7px;
-      height: 7px;
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
       border-radius: 999px;
-      background: var(--primary);
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.85);
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(56,189,248,0.4);
     }
 
-    .feature-title {
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: 4px;
-      color: var(--text-soft);
+    h1 {
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
     }
 
-    .feature-text {
-      color: var(--text-muted);
+    .gradient-text {
+      background: linear-gradient(120deg, #e0f2fe, #7dd3fc, #22d3ee);
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
-    .feature-tags {
-      margin-top: 8px;
+    .subtitle {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 540px;
+    }
+
+    .badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      font-size: 0.7rem;
+      gap: 8px;
+      margin-top: 4px;
     }
 
-    .feature-tags span {
-      padding: 3px 8px;
+    .badge {
+      font-size: 11px;
+      padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: var(--text-soft);
+      border: 1px solid rgba(148,163,184,0.4);
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.12), rgba(15,23,42,0.9));
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    /* PIANI */
-    .plan-grid {
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      font-size: 13px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.18s ease-out;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 0 0, #38bdf8, #0369a1);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 16px 40px rgba(8,47,73,0.8);
+      border-color: rgba(15,23,42,0.9);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 50px rgba(8,47,73,0.9);
+      filter: brightness(1.06);
+    }
+
+    .btn-ghost {
+      background: rgba(15,23,42,0.9);
+      border-color: rgba(148,163,184,0.6);
+      color: #e5e7eb;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,1);
+      transform: translateY(-1px);
+    }
+
+    .mini-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .grid-two {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 16px;
     }
 
-    .plan-card {
+    .small-card {
+      border-radius: 18px;
+      border: 1px solid rgba(30,64,175,0.7);
+      background: radial-gradient(circle at 10% 0, rgba(56,189,248,0.15), rgba(15,23,42,0.9));
+      padding: 10px 12px;
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .small-card h3 {
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .small-card p {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .small-metric {
+      font-size: 11px;
+      color: #a5b4fc;
+    }
+
+    .aside {
       border-radius: var(--radius-lg);
-      padding: 14px 14px 12px;
-      background:
-        linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
-      border: 1px solid rgba(30, 64, 175, 0.9);
-      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.95);
-      font-size: 0.8rem;
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.2), #020617);
+      border: 1px solid rgba(148,163,184,0.4);
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 18px 55px rgba(15,23,42,0.95);
+    }
+
+    .aside-heading {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #e5e7eb;
+    }
+
+    .roadmap {
+      border-radius: 16px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(30,64,175,0.8);
+      padding: 12px 14px;
       display: flex;
       flex-direction: column;
       gap: 8px;
+      font-size: 11px;
     }
 
-    .plan-name {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--text-soft);
-    }
-
-    .plan-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    .plan-price {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .plan-price span {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .plan-list {
-      list-style: none;
-      display: grid;
-      gap: 4px;
-    }
-
-    .plan-item {
+    .roadmap-row {
       display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      color: var(--text-soft);
-    }
-
-    .plan-bullet {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.32);
-      border: 1px solid rgba(34, 197, 94, 0.8);
-      margin-top: 3px;
-    }
-
-    .plan-foot {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-
-    .plan-badge {
-      align-self: flex-start;
-      margin-top: 4px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(0, 240, 255, 0.7);
-      background: rgba(8, 47, 73, 0.8);
-      font-size: 0.7rem;
-      color: var(--primary);
-    }
-
-    /* ROADMAP */
-    .roadmap-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      font-size: 0.8rem;
-    }
-
-    .roadmap-card {
-      border-radius: var(--radius-lg);
-      padding: 12px;
-      background:
-        linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
-      border: 1px solid rgba(30, 64, 175, 0.9);
-      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.9);
-    }
-
-    .roadmap-title {
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 4px;
-      color: var(--text-soft);
-    }
-
-    .roadmap-title span {
-      font-size: 0.7rem;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .roadmap-list {
-      list-style: none;
-      display: grid;
-      gap: 4px;
-      color: var(--text-muted);
-    }
-
-    /* NOTE LEGALI */
-    .legal-card {
-      border-radius: 22px;
-      padding: 16px 16px 14px;
-      background:
-        linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
-      border: 1px solid rgba(148, 163, 184, 0.9);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      display: grid;
-      gap: 8px;
-    }
-
-    .legal-strong {
-      color: var(--text-soft);
-      font-weight: 500;
-    }
-
-    .legal-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 14px;
-    }
-
-    .legal-list {
-      list-style: none;
-      display: grid;
-      gap: 4px;
-    }
-
-    /* BETA FORM */
-    .beta-section {
-      padding: 30px 0 34px;
-    }
-
-    .beta-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 18px;
+      gap: 10px;
       align-items: flex-start;
     }
 
-    .beta-copy {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      display: grid;
-      gap: 8px;
-    }
-
-    .beta-copy strong {
-      color: var(--text-soft);
-    }
-
-    .beta-points {
-      display: grid;
-      gap: 6px;
-      font-size: 0.8rem;
-    }
-
-    .beta-point {
+    .roadmap-step {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.9);
       display: flex;
-      align-items: flex-start;
-      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #e5e7eb;
+      background: rgba(15,23,42,0.9);
     }
 
-    .beta-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--primary);
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.9);
+    .roadmap-content strong {
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    .roadmap-content span {
+      display: block;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, rgba(15,23,42,0), rgba(148,163,184,0.6), rgba(15,23,42,0));
+      margin: 4px 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       margin-top: 4px;
     }
 
-    .beta-card {
-      border-radius: 22px;
-      padding: 16px 16px 14px;
-      background:
-        radial-gradient(circle at 0 0, rgba(0, 240, 255, 0.22), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.28), transparent 60%),
-        linear-gradient(145deg, #020617, #020617);
-      border: 1px solid rgba(148, 163, 184, 0.9);
-      box-shadow: var(--shadow-soft), var(--shadow-primary);
+    label {
+      font-size: 11px;
+      color: #e5e7eb;
     }
 
-    .beta-title {
-      font-size: 0.96rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: var(--text-soft);
-    }
-
-    .beta-sub {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .beta-form {
-      display: grid;
-      gap: 8px;
-      font-size: 0.8rem;
-    }
-
-    .field {
-      display: grid;
-      gap: 4px;
-    }
-
-    .field label {
-      font-size: 0.78rem;
-      color: var(--text-soft);
-    }
-
-    .field input,
-    .field select,
-    .field textarea {
-      background: rgba(15, 23, 42, 0.98);
+    input,
+    select,
+    textarea {
+      width: 100%;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      padding: 7px 11px;
-      font-size: 0.8rem;
-      color: var(--text-soft);
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.95);
+      padding: 7px 10px;
+      font-size: 12px;
+      color: #e5e7eb;
       outline: none;
+      transition: border-color 0.18s ease-out, box-shadow 0.18s ease-out;
     }
 
-    .field textarea {
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.4);
+    }
+
+    textarea {
       border-radius: 14px;
-      min-height: 60px;
       resize: vertical;
+      min-height: 60px;
+      font-family: inherit;
     }
 
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: rgba(148, 163, 184, 0.9);
+    .row-two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 8px;
     }
 
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.6);
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-top: 2px;
     }
 
-    .beta-footnote {
-      margin-top: 6px;
-      font-size: 0.72rem;
-      color: var(--text-muted);
+    .checkbox-row input {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      margin-top: 2px;
     }
 
-    .beta-footnote strong {
-      color: var(--text-soft);
+    .checkbox-row span {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .submit-row .hint {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .btn-submit {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(15,23,42,0.9);
+      background: radial-gradient(circle at 0 0, #22d3ee, #0ea5e9);
+      color: #020617;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 16px;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 12px 30px rgba(8,47,73,0.9);
+      transition: all 0.18s ease-out;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
     }
 
     footer {
-      padding: 12px 0 16px;
-      border-top: 1px solid rgba(148, 163, 184, 0.4);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      background:
-        radial-gradient(circle at 0 0, rgba(0, 240, 255, 0.18), transparent 60%),
-        rgba(3, 7, 18, 0.98);
-    }
-
-    .footer-inner {
+      margin-top: auto;
+      padding-top: 6px;
+      border-top: 1px solid rgba(15,23,42,0.9);
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
       align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      gap: 12px;
+      position: relative;
+      z-index: 1;
     }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    footer span {
+      opacity: 0.9;
     }
 
-    .footer-links a {
-      color: var(--text-muted);
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
     }
 
-    .footer-links a:hover {
-      color: var(--text-soft);
+    footer a:hover {
+      text-decoration: underline;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 900px) {
-      .hero-grid {
+      .page {
+        padding: 20px 18px 22px;
+        border-radius: 18px;
+      }
+      main {
         grid-template-columns: minmax(0, 1fr);
       }
-
-      .hero-card {
-        margin-top: 10px;
+      .hero {
+        padding-right: 0;
       }
-
-      .feature-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .plan-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .roadmap-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .legal-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .beta-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 700px) {
-      header {
-        position: static;
-      }
-
-      .nav {
+      footer {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
-        padding: 8px 0 10px;
-        height: auto;
       }
-
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 12px;
-        font-size: 0.8rem;
+      .page::before {
+        width: 360px;
+        height: 360px;
+        top: -160px;
+        right: -120px;
       }
+    }
 
-      .hero {
-        padding-top: 32px;
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
       }
-
-      .hero-grid {
-        gap: 24px;
+      h1 {
+        font-size: 26px;
       }
-
-      .hero-title {
-        font-size: 2rem;
+      .subtitle {
+        font-size: 13px;
       }
-
-      .feature-grid,
-      .plan-grid,
-      .roadmap-grid {
-        grid-template-columns: minmax(0, 1fr);
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-primary,
+      .btn-ghost {
+        justify-content: center;
+      }
+      .row-two {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .submit-row {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .submit-row .hint {
+        text-align: left;
       }
     }
   </style>
 </head>
-
 <body>
-  <div class="bg-orbit"></div>
-  <div class="page">
-    <header>
-      <div class="container">
-        <nav class="nav">
-          <div class="brand">
-            <div class="logo-wrap">
-              <div class="logo"></div>
-            </div>
-            <div class="brand-text">
-              <div class="brand-name">NEXTITALIA</div>
-              <div class="brand-tagline">AI • Trading • Technology</div>
-            </div>
-          </div>
-
-          <div class="nav-links">
-            <a href="#come-funziona">Come funziona</a>
-            <a href="#piani">Piani</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="#legal">Note legali</a>
-          </div>
-
-          <div class="nav-right">
-            <span class="nav-pill">Accesso Beta limitato</span>
-            <a href="#beta">
-              <button class="btn btn-primary">BETA ACCESS</button>
-            </a>
-          </div>
-        </nav>
+<div class="page">
+  <header>
+    <div class="brand">
+      <div class="logo-mark">
+        <span>NX</span>
       </div>
-    </header>
-
-    <main>
-      <!-- HERO -->
-      <section class="hero" id="top">
-        <div class="container hero-grid">
-          <div>
-            <div class="badge">
-              <span class="badge-dot"></span>
-              Accesso Beta • Posti limitati
-            </div>
-
-            <h1 class="hero-title">
-              La tua <span class="hero-grad">AI per il Forex</span> in un’unica dashboard.
-            </h1>
-
-            <p class="hero-sub">
-              FX Sentinel Pro legge news, sentiment e volumi, filtra il rumore e ti mostra solo i momenti davvero interessanti per il tuo trading.
-            </p>
-
-            <ul class="hero-list">
-              <li><span>✓</span> Analisi automatica di news &amp; calendario macroeconomico.</li>
-              <li><span>✓</span> Sintesi AI dei possibili scenari, con pro e contro.</li>
-              <li><span>✓</span> Nessuna promessa di soldi facili: solo dati, contesto e disciplina.</li>
-            </ul>
-
-            <div class="hero-cta-row">
-              <a href="#beta">
-                <button class="btn btn-primary">Richiedi accesso alla Beta</button>
-              </a>
-              <button class="btn btn-outline" onclick="document.getElementById('come-funziona').scrollIntoView({behavior:'smooth'})">
-                Vedi come funziona
-              </button>
-            </div>
-
-            <div class="hero-meta">
-              <strong>Versione Beta sperimentale.</strong> L’accesso è gratuito ma a posti limitati: vogliamo raccogliere feedback reali da trader reali, prima di costruire il prodotto definitivo.
-            </div>
-
-            <div class="hero-pill-row">
-              <div class="hero-pill"><strong>Analisi AI</strong> su coppie Forex selezionate</div>
-              <div class="hero-pill">Dashboard <strong>16:9</strong> pensata per monitor multi-schermo</div>
-              <div class="hero-pill"><strong>Backtest</strong> dei segnali su 5–10 anni di storico (in sviluppo)</div>
-            </div>
-          </div>
-
-          <div>
-            <div class="hero-card">
-              <div class="hero-card-inner">
-                <div class="hero-card-label">
-                  <span class="hero-card-dot"></span>
-                  FX Sentinel Pro • Panoramica
-                </div>
-                <div class="hero-card-title">Una sola schermata, tutto il contesto che ti serve.</div>
-                <div class="hero-card-sub">
-                  L’idea è semplice: meno caos, più chiarezza. Invece di 10 finestre aperte, hai una vista unica con quello che conta davvero.
-                </div>
-
-                <div class="hero-metrics">
-                  <div class="metric">
-                    <div class="metric-label">Storico</div>
-                    <div class="metric-value">5–10 anni</div>
-                    <div class="metric-chip">Backtest in arrivo</div>
-                  </div>
-                  <div class="metric">
-                    <div class="metric-label">Notizie</div>
-                    <div class="metric-value">Filtrate</div>
-                    <div class="metric-chip">Meno rumore, più contesto</div>
-                  </div>
-                  <div class="metric">
-                    <div class="metric-label">Segnali</div>
-                    <div class="metric-value">Contestualizzati</div>
-                    <div class="metric-chip">Tu resti al comando</div>
-                  </div>
-                </div>
-
-                <div class="hero-steps">
-                  <div class="hero-step">
-                    <div class="hero-step-num">1</div>
-                    <div class="hero-step-text">
-                      Scegli la coppia Forex che ti interessa.
-                      <span>Es. EUR/USD, GBP/JPY, XAU/USD…</span>
-                    </div>
-                  </div>
-                  <div class="hero-step">
-                    <div class="hero-step-num">2</div>
-                    <div class="hero-step-text">
-                      L’AI analizza prezzo, contesto e notizie.
-                      <span>Trend, volatilità, eventi macro e sentiment.</span>
-                    </div>
-                  </div>
-                  <div class="hero-step">
-                    <div class="hero-step-num">3</div>
-                    <div class="hero-step-text">
-                      Vedi uno scenario sintetico.
-                      <span>Zone interessanti, possibili TP/SL, scenari alternativi.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+      <div class="brand-text">
+        <div class="brand-name">NEXTITALIA</div>
+        <div class="brand-tagline" data-i18n="brand_tagline">
+          AI • Trading • Technology
         </div>
-      </section>
+      </div>
+    </div>
 
-      <!-- COME FUNZIONA -->
-      <section class="section" id="come-funziona">
-        <div class="container">
-          <div class="section-header">
-            <div class="section-title">Come funziona FX Sentinel Pro</div>
-            <div class="section-sub">
-              Non è un bot che “fa tutto lui”, ma un assistente che ti aiuta a prendere decisioni più strutturate, riducendo l’overtrading e le scelte impulsive.
-            </div>
-          </div>
+    <div class="lang-switch" aria-label="Language switch">
+      <button class="lang-btn active" data-lang-btn="it">IT</button>
+      <button class="lang-btn" data-lang-btn="en">EN</button>
+    </div>
+  </header>
 
-          <div class="feature-grid">
-            <div class="feature-card">
-              <div class="feature-label">
-                <span class="feature-dot"></span>
-                1. Raccolta dati
-              </div>
-              <div class="feature-title">Prezzo, volumi e news</div>
-              <div class="feature-text">
-                L’AI aggrega in un unico punto informazioni sul movimento del prezzo, i volumi e le notizie rilevanti. Il resto viene filtrato.
-              </div>
-              <div class="feature-tags">
-                <span>Calendario macro</span>
-                <span>Sentiment di mercato</span>
-                <span>Volatilità</span>
-              </div>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-label">
-                <span class="feature-dot"></span>
-                2. Analisi AI
-              </div>
-              <div class="feature-title">Scenari possibili, non ordini ciechi</div>
-              <div class="feature-text">
-                L’AI propone scenari alternativi (bullish / bearish / laterale) con aree di interesse e possibili zone di stop e target. Tu decidi se e come agire.
-              </div>
-              <div class="feature-tags">
-                <span>Nessun copy-trading</span>
-                <span>Supporto decisionale</span>
-              </div>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-label">
-                <span class="feature-dot"></span>
-                3. Dashboard 16:9
-              </div>
-              <div class="feature-title">Pensata per monitor e TV</div>
-              <div class="feature-text">
-                Una schermata pulita, scura, leggibile, ideale per essere tenuta aperta su un monitor dedicato o su una TV in studio.
-              </div>
-              <div class="feature-tags">
-                <span>Layout orizzontale</span>
-                <span>Colori low-stress</span>
-              </div>
-            </div>
-          </div>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">
+        <div class="eyebrow-pill">
+          <span class="eyebrow-dot"></span>
+          <span data-i18n="beta_label">
+            BETA PRIVATA 2025
+          </span>
         </div>
-      </section>
+        <span data-i18n="beta_sub">
+          Accesso limitato per trader selezionati
+        </span>
+      </div>
 
-      <!-- PIANI -->
-      <section class="section" id="piani">
-        <div class="container">
-          <div class="section-header">
-            <div class="section-title">Piani previsti (dopo la Beta)</div>
-            <div class="section-sub">
-              In questa fase non stai comprando nulla: stai solo chiedendo di provare la Beta e di essere informato quando nascerà il servizio reale.
-            </div>
-          </div>
+      <h1>
+        <span class="gradient-text" data-i18n="hero_title_main">
+          FX Sentinel Pro
+        </span><br>
+        <span data-i18n="hero_title_sub">
+          Analisi Forex guidata dall’intelligenza artificiale.
+        </span>
+      </h1>
 
-          <div class="plan-grid">
-            <div class="plan-card">
-              <div class="plan-label">FASE 1</div>
-              <div class="plan-name">Beta gratuita</div>
-              <div class="plan-price">0 € <span>/ per tutta la durata della Beta</span></div>
-              <ul class="plan-list">
-                <li class="plan-item">
-                  <span class="plan-bullet"></span> Accesso alla dashboard in versione test.
-                </li>
-                <li class="plan-item">
-                  <span class="plan-bullet"></span> Aggiornamenti man mano che il progetto evolve.
-                </li>
-                <li class="plan-item">
-                  <span class="plan-bullet"></span> Possibilità di inviare feedback prioritari.
-                </li>
-              </ul>
-              <div class="plan-foot">
-                Nessun obbligo di passare alla versione a pagamento in futuro.
-              </div>
-            </div>
+      <p class="subtitle" data-i18n="hero_subtitle">
+        Un assistente intelligente che analizza i mercati 24/7, elabora news,
+        sentiment, volatilità e storico dei prezzi per aiutarti a prendere
+        decisioni operative più consapevoli – senza sostituire il tuo giudizio.
+      </p>
 
-            <div class="plan-card">
-              <div class="plan-label">FASE 2 (idea)</div>
-              <div class="plan-name">Piano Base</div>
-              <div class="plan-price">da definire <span>/ mese</span></div>
-              <ul class="plan-list">
-                <li class="plan-item">
-                  <span class="plan-bullet"></span> Accesso alle analisi AI su coppie principali Forex.
-                </li>
-                <li class="plan-item">
-                  <span class="plan-bullet"></span> Avvisi e notifiche configurabili.
-                </li>
-                <li class="plan-item">
-                  <span class="plan-bullet"></span> Aggiornamenti continui della piattaforma.
-                </li>
-              </ul>
-              <div class="plan-foot">
-                Il prezzo verrà deciso solo dopo la fase Beta, in base ai costi reali e all’utilità percepita.
-              </div>
-            </div>
-
-            <div class="plan-card">
-              <div class="plan-label">FASE 3 (idea)</div>
-              <div class="plan-name">Piano Pro</div>
-              <div class="plan-price">da definire <span>/ mese</span></div>
-              <div class="plan-badge">Riservato a pochi utenti seri</div>
-              <ul class="plan-list">
-                <li class="plan-item">
-                  <span class="plan-bullet"></span> Funzioni avanzate di backtest e statistiche storiche.
-                </li>
-                <li class="plan-item">
-                  <span class="plan-bullet"></span> Integrazioni aggiuntive (API, esportazioni, ecc.).</li>
-                <li class="plan-item">
-                  <span class="plan-bullet"></span> Priorità su nuove features pensate insieme ai tester.</li>
-              </ul>
-              <div class="plan-foot">
-                Anche in questo caso: nessuna promessa di rendimenti, solo strumenti più avanzati.
-              </div>
-            </div>
-          </div>
+      <div class="badges">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          <span data-i18n="badge_1">
+            Analisi multi-coppia in tempo reale
+          </span>
         </div>
-      </section>
-
-      <!-- ROADMAP (NUOVA) -->
-      <section class="section" id="roadmap">
-        <div class="container">
-          <div class="section-header">
-            <div class="section-title">Roadmap prevista</div>
-            <div class="section-sub">
-              Una tabella di marcia realistica, che può cambiare in base ai feedback dei tester e alle condizioni di mercato.
-            </div>
-          </div>
-
-          <div class="roadmap-grid">
-            <div class="roadmap-card">
-              <div class="roadmap-title"><span>FASE 1</span><br>Backend AI &amp; API</div>
-              <ul class="roadmap-list">
-                <li>API per analisi in tempo quasi reale.</li>
-                <li>API per backtest sui dati storici.</li>
-                <li>Integrazione modelli AI per sintesi e scenari.</li>
-                <li>Infrastruttura tecnica pensata per crescere nel tempo.</li>
-              </ul>
-            </div>
-
-            <div class="roadmap-card">
-              <div class="roadmap-title"><span>FASE 2</span><br>Dashboard web</div>
-              <ul class="roadmap-list">
-                <li>Interfaccia 16:9, pensata per monitor dedicati.</li>
-                <li>Multilingua (italiano, inglese, ecc.).</li>
-                <li>Selettore coppie Forex e strumenti principali.</li>
-                <li>Sezione backtest e report.</li>
-              </ul>
-            </div>
-
-            <div class="roadmap-card">
-              <div class="roadmap-title"><span>FASE 3</span><br>Beta &amp; ottimizzazione</div>
-              <ul class="roadmap-list">
-                <li>Prima ondata di tester selezionati.</li>
-                <li>Raccolta feedback reali su usabilità e utilità.</li>
-                <li>Correzione bug e semplificazione dei flussi.</li>
-                <li>Decisione se trasformare il progetto in servizio stabile.</li>
-              </ul>
-            </div>
-          </div>
+        <div class="badge">
+          <span class="badge-dot"></span>
+          <span data-i18n="badge_2">
+            Suggerimenti TP/SL basati su dati storici
+          </span>
         </div>
-      </section>
-
-      <!-- NOTE LEGALI -->
-      <section class="section" id="legal">
-        <div class="container">
-          <div class="section-header">
-            <div class="section-title">Note legali importanti</div>
-          </div>
-
-          <div class="legal-card">
-            <div class="legal-grid">
-              <div>
-                <p>
-                  <span class="legal-strong">FX Sentinel Pro è un progetto sperimentale in fase di Beta privata.</span>
-                  Non offre, e non intende offrire, consulenza finanziaria personalizzata, gestione di portafogli o
-                  indicazioni di investimento “sicure”.
-                </p>
-                <p>
-                  Le informazioni mostrate (analisi AI, scenari, esempi di TP/SL, ecc.) hanno lo scopo di aiutarti a
-                  ragionare in modo più strutturato, ma <span class="legal-strong">la decisione finale di entrare o
-                  meno in una posizione resta sempre e solo tua.</span>
-                </p>
-              </div>
-              <div>
-                <ul class="legal-list">
-                  <li>
-                    • <span class="legal-strong">Nessuna promessa di rendimenti:</span> il trading sul Forex e sugli
-                    altri strumenti finanziari è rischioso e può portare a perdite anche molto elevate.
-                  </li>
-                  <li>
-                    • <span class="legal-strong">Utilizzo responsabile:</span> non impegnare mai capitali che non sei
-                    disposto a perdere completamente.
-                  </li>
-                  <li>
-                    • <span class="legal-strong">Dati personali:</span> il tuo nome e la tua email verranno utilizzati
-                    solo per comunicazioni relative al progetto FX Sentinel Pro (Beta, aggiornamenti, eventuale
-                    lancio futuro) e non saranno ceduti a terzi per scopi di marketing esterni.
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <p>
-              Puoi chiedere in qualsiasi momento la cancellazione dei tuoi dati dalla lista Beta scrivendo a
-              <span class="legal-strong">nexitalia.eu@gmail.com</span>. La partecipazione alla Beta è totalmente
-              volontaria e potrà essere interrotta in qualsiasi momento da entrambe le parti.
-            </p>
-          </div>
+        <div class="badge">
+          <span class="badge-dot"></span>
+          <span data-i18n="badge_3">
+            Notifiche intelligenti su livelli chiave
+          </span>
         </div>
-      </section>
+      </div>
 
-      <!-- BETA ACCESS -->
-      <section class="beta-section" id="beta">
-        <div class="container beta-grid">
-          <div class="beta-copy">
-            <div class="section-title">Richiedi l’accesso alla Beta</div>
-            <p>
-              Compila il modulo qui a fianco se vuoi essere tra i primi a provare FX Sentinel Pro quando sarà
-              disponibile una versione Beta utilizzabile.
-            </p>
-            <div class="beta-points">
-              <div class="beta-point">
-                <div class="beta-dot"></div>
-                <div>Ti contatteremo solo per comunicazioni legate al progetto (niente spam, niente newsletter generiche).</div>
-              </div>
-              <div class="beta-point">
-                <div class="beta-dot"></div>
-                <div>Potrai dare feedback sinceri su cosa funziona, cosa no e cosa vorresti vedere migliorato.</div>
-              </div>
-              <div class="beta-point">
-                <div class="beta-dot"></div>
-                <div>Potrai chiedere in qualsiasi momento di essere rimosso dalla lista Beta.</div>
-              </div>
-            </div>
-          </div>
+      <div class="cta-row">
+        <a href="#waitlist" class="btn-primary">
+          <span data-i18n="cta_primary">
+            Entra nella lista d’attesa
+          </span>
+        </a>
+        <a href="#roadmap" class="btn-ghost">
+          <span data-i18n="cta_secondary">
+            Vedi la roadmap 2025
+          </span>
+        </a>
+      </div>
+      <div class="mini-label" data-i18n="cta_note">
+        Nessun pagamento ora. Ti contatteremo solo quando la beta sarà pronta.
+      </div>
 
-          <div class="beta-card">
-            <div class="beta-title">Modulo di richiesta accesso Beta</div>
-            <div class="beta-sub">
-              Il modulo non ti iscrive ad alcun abbonamento: serve solo per tenere traccia delle persone interessate alla Beta.
-            </div>
-
-            <!-- Form che manda un'email a nexitalia.eu@gmail.com tramite mailto -->
-            <form class="beta-form" action="mailto:nexitalia.eu@gmail.com" method="POST" enctype="text/plain">
-              <div class="field">
-                <label for="nome">Nome</label>
-                <input id="nome" name="Nome" type="text" placeholder="Inserisci il tuo nome" required />
-              </div>
-
-              <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="Email" type="email" placeholder="nome@esempio.com" required />
-              </div>
-
-              <div class="field">
-                <label for="trader">Che tipo di trader sei?</label>
-                <select id="trader" name="Profilo trader">
-                  <option value="Principiante">Principiante</option>
-                  <option value="Intermedio">Intermedio</option>
-                  <option value="Avanzato">Avanzato</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="note">Note (facoltative)</label>
-                <textarea id="note" name="Note" placeholder="Racconta in breve come operi sul Forex o cosa ti aspetti da uno strumento del genere."></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary">
-                Voglio entrare nella Beta
-              </button>
-
-              <div class="beta-footnote">
-                Inviando questo modulo accetti che i dati inseriti vengano utilizzati per contattarti riguardo a FX
-                Sentinel Pro (Beta) e a eventuali evoluzioni future del progetto. Puoi chiedere la cancellazione dei
-                tuoi dati in qualsiasi momento scrivendo a <strong>nexitalia.eu@gmail.com</strong>.
-              </div>
-            </form>
-          </div>
+      <div class="grid-two">
+        <div class="small-card">
+          <h3 data-i18n="card1_title">
+            Per chi è pensato
+          </h3>
+          <p data-i18n="card1_text">
+            Trader retail, consulenti finanziari e appassionati di mercati che
+            vogliono aggiungere un layer di analisi quantitativa e AI al proprio
+            workflow, restando sempre in controllo delle decisioni.
+          </p>
         </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container">
-        <div class="footer-inner">
-          <div>© <span id="year"></span> NextItalia – FX Sentinel Pro (versione Beta sperimentale).</div>
-          <div class="footer-links">
-            <a href="#legal">Note legali</a>
-            <span>•</span>
-            <span>Contatto: nexitalia.eu@gmail.com</span>
+        <div class="small-card">
+          <h3 data-i18n="card2_title">
+            Cosa fa FX Sentinel Pro
+          </h3>
+          <p data-i18n="card2_text">
+            Analizza coppie Forex, trend, volatilità e notizie; genera scenari
+            di rischio-rendimento, livelli di attenzione e backtest di base per
+            validare le tue strategie prima di operare.
+          </p>
+          <div class="small-metric" data-i18n="card2_metric">
+            Focus iniziale: principali coppie Forex (EUR/USD, GBP/USD, USD/JPY…)
           </div>
         </div>
       </div>
-    </footer>
-  </div>
+    </section>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    <aside class="aside">
+      <div id="roadmap" class="aside-heading" data-i18n="aside_title">
+        Roadmap strategica 2025
+      </div>
+
+      <div class="roadmap">
+        <div class="roadmap-row">
+          <div class="roadmap-step">1</div>
+          <div class="roadmap-content">
+            <strong data-i18n="phase1_title">
+              Struttura legale
+            </strong>
+            <span data-i18n="phase1_text">
+              LLC in Wyoming (USA), richiesta EIN, conto bancario dedicato
+              e collegamento a Stripe per la futura gestione degli abbonamenti.
+            </span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="roadmap-row">
+          <div class="roadmap-step">2</div>
+          <div class="roadmap-content">
+            <strong data-i18n="phase2_title">
+              Backend AI &amp; API
+            </strong>
+            <span data-i18n="phase2_text">
+              Sviluppo delle API di analisi, backtest e notifiche, integrazione
+              dei modelli di intelligenza artificiale e dei webhook Stripe per
+              la gestione sicura degli account.
+            </span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="roadmap-row">
+          <div class="roadmap-step">3</div>
+          <div class="roadmap-content">
+            <strong data-i18n="phase3_title">
+              Dashboard web
+            </strong>
+            <span data-i18n="phase3_text">
+              Interfaccia 16:9 ottimizzata per desktop, modalità multilingua,
+              selettore coppie Forex, suggerimenti TP/SL, sezione backtest
+              e notifiche configurabili.
+            </span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="roadmap-row">
+          <div class="roadmap-step">4</div>
+          <div class="roadmap-content">
+            <strong data-i18n="phase4_title">
+              Beta chiusa &amp; ottimizzazione
+            </strong>
+            <span data-i18n="phase4_text">
+              Accesso iniziale a un gruppo ristretto di trader, raccolta feedback
+              reali, ottimizzazione degli algoritmi e definizione dei piani di
+              abbonamento sostenibili nel tempo.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div id="waitlist">
+        <div class="aside-heading" style="margin-top:4px;" data-i18n="form_title">
+          Iscriviti alla lista d’attesa
+        </div>
+        <p class="mini-label" data-i18n="form_subtitle">
+          Compila il form qui sotto: ti contatteremo solo per aggiornarti sulla
+          beta e sul lancio ufficiale.
+        </p>
+
+        <form action="mailto:nexitalia.eu@gmail.com" method="POST" enctype="text/plain">
+          <div class="row-two">
+            <div>
+              <label for="name" data-i18n="field_name_label">
+                Nome e cognome
+              </label>
+              <input id="name" name="Nome" type="text" required
+                     placeholder="Es. Mario Rossi">
+            </div>
+            <div>
+              <label for="email" data-i18n="field_email_label">
+                Indirizzo email
+              </label>
+              <input id="email" name="Email" type="email" required
+                     placeholder="esempio@email.com">
+            </div>
+          </div>
+
+          <div>
+            <label for="experience" data-i18n="field_experience_label">
+              Livello di esperienza nel Forex
+            </label>
+            <select id="experience" name="Esperienza">
+              <option value="beginner" data-i18n="field_experience_opt1">
+                Principiante – sto iniziando ora
+              </option>
+              <option value="intermediate" data-i18n="field_experience_opt2">
+                Intermedio – qualche anno di esperienza
+              </option>
+              <option value="advanced" data-i18n="field_experience_opt3">
+                Avanzato / professionista
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" data-i18n="field_message_label">
+              Come pensi di usare FX Sentinel Pro?
+            </label>
+            <textarea id="message" name="Messaggio"
+                      placeholder="Scrivi in poche righe i tuoi obiettivi o il tuo stile di trading."></textarea>
+          </div>
+
+          <div class="checkbox-row">
+            <input id="privacy" type="checkbox" required>
+            <span data-i18n="privacy_text">
+              Confermo di aver letto e compreso che FX Sentinel Pro è uno strumento
+              di supporto all’analisi e non fornisce consulenza finanziaria
+              personalizzata. Le decisioni operative restano sempre a mio carico.
+            </span>
+          </div>
+
+          <div class="submit-row">
+            <div class="hint" data-i18n="form_hint">
+              Il modulo invierà una mail a nexitalia.eu@gmail.com con i dati che hai inserito.
+            </div>
+            <button type="submit" class="btn-submit">
+              <span data-i18n="form_submit">
+                Invia candidatura alla beta
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <span data-i18n="footer_left">
+      FX Sentinel Pro è un progetto NEXTITALIA. Nessuna garanzia di profitto;
+      usa sempre il tuo giudizio e una corretta gestione del rischio.
+    </span>
+    <span data-i18n="footer_right">
+      Contatto: <a href="mailto:nexitalia.eu@gmail.com">nexitalia.eu@gmail.com</a>
+    </span>
+  </footer>
+</div>
+
+<script>
+  const translations = {
+    it: {
+      brand_tagline: "AI • Trading • Technology",
+      beta_label: "BETA PRIVATA 2025",
+      beta_sub: "Accesso limitato per trader selezionati",
+      hero_title_main: "FX Sentinel Pro",
+      hero_title_sub: "Analisi Forex guidata dall’intelligenza artificiale.",
+      hero_subtitle:
+        "Un assistente intelligente che analizza i mercati 24/7, elabora news, sentiment, volatilità e storico dei prezzi per aiutarti a prendere decisioni operative più consapevoli – senza sostituire il tuo giudizio.",
+      badge_1: "Analisi multi-coppia in tempo reale",
+      badge_2: "Suggerimenti TP/SL basati su dati storici",
+      badge_3: "Notifiche intelligenti su livelli chiave",
+      cta_primary: "Entra nella lista d’attesa",
+      cta_secondary: "Vedi la roadmap 2025",
+      cta_note:
+        "Nessun pagamento ora. Ti contatteremo solo quando la beta sarà pronta.",
+      card1_title: "Per chi è pensato",
+      card1_text:
+        "Trader retail, consulenti finanziari e appassionati di mercati che vogliono aggiungere un layer di analisi quantitativa e AI al proprio workflow, restando sempre in controllo delle decisioni.",
+      card2_title: "Cosa fa FX Sentinel Pro",
+      card2_text:
+        "Analizza coppie Forex, trend, volatilità e notizie; genera scenari di rischio-rendimento, livelli di attenzione e backtest di base per validare le tue strategie prima di operare.",
+      card2_metric:
+        "Focus iniziale: principali coppie Forex (EUR/USD, GBP/USD, USD/JPY…)",
+      aside_title: "Roadmap strategica 2025",
+      phase1_title: "Struttura legale",
+      phase1_text:
+        "LLC in Wyoming (USA), richiesta EIN, conto bancario dedicato e collegamento a Stripe per la futura gestione degli abbonamenti.",
+      phase2_title: "Backend AI & API",
+      phase2_text:
+        "Sviluppo delle API di analisi, backtest e notifiche, integrazione dei modelli di intelligenza artificiale e dei webhook Stripe per la gestione sicura degli account.",
+      phase3_title: "Dashboard web",
+      phase3_text:
+        "Interfaccia 16:9 ottimizzata per desktop, modalità multilingua, selettore coppie Forex, suggerimenti TP/SL, sezione backtest e notifiche configurabili.",
+      phase4_title: "Beta chiusa & ottimizzazione",
+      phase4_text:
+        "Accesso iniziale a un gruppo ristretto di trader, raccolta feedback reali, ottimizzazione degli algoritmi e definizione dei piani di abbonamento sostenibili nel tempo.",
+      form_title: "Iscriviti alla lista d’attesa",
+      form_subtitle:
+        "Compila il form qui sotto: ti contatteremo solo per aggiornarti sulla beta e sul lancio ufficiale.",
+      field_name_label: "Nome e cognome",
+      field_email_label: "Indirizzo email",
+      field_experience_label: "Livello di esperienza nel Forex",
+      field_experience_opt1: "Principiante – sto iniziando ora",
+      field_experience_opt2: "Intermedio – qualche anno di esperienza",
+      field_experience_opt3: "Avanzato / professionista",
+      field_message_label: "Come pensi di usare FX Sentinel Pro?",
+      privacy_text:
+        "Confermo di aver letto e compreso che FX Sentinel Pro è uno strumento di supporto all’analisi e non fornisce consulenza finanziaria personalizzata. Le decisioni operative restano sempre a mio carico.",
+      form_hint:
+        "Il modulo invierà una mail a nexitalia.eu@gmail.com con i dati che hai inserito.",
+      form_submit: "Invia candidatura alla beta",
+      footer_left:
+        "FX Sentinel Pro è un progetto NEXTITALIA. Nessuna garanzia di profitto; usa sempre il tuo giudizio e una corretta gestione del rischio.",
+      footer_right:
+        "Contatto: <a href=\"mailto:nexitalia.eu@gmail.com\">nexitalia.eu@gmail.com</a>"
+    },
+    en: {
+      brand_tagline: "AI • Trading • Technology",
+      beta_label: "PRIVATE BETA 2025",
+      beta_sub: "Limited access for selected traders",
+      hero_title_main: "FX Sentinel Pro",
+      hero_title_sub: "AI-powered Forex analysis for smarter decisions.",
+      hero_subtitle:
+        "An intelligent assistant that monitors markets 24/7, processes news, sentiment, volatility and price history to help you take more informed trading decisions – without replacing your judgment.",
+      badge_1: "Real-time multi-pair analysis",
+      badge_2: "TP/SL suggestions based on history",
+      badge_3: "Smart alerts on key levels",
+      cta_primary: "Join the waiting list",
+      cta_secondary: "See the 2025 roadmap",
+      cta_note:
+        "No payment now. We’ll contact you only when the beta is ready.",
+      card1_title: "Who it is for",
+      card1_text:
+        "Retail traders, financial professionals and market enthusiasts who want to add a quantitative and AI layer to their workflow while always remaining in control of decisions.",
+      card2_title: "What FX Sentinel Pro does",
+      card2_text:
+        "It analyzes Forex pairs, trends, volatility and news; generates risk-reward scenarios, watch levels and basic backtests to validate your ideas before you trade.",
+      card2_metric:
+        "Initial focus: major Forex pairs (EUR/USD, GBP/USD, USD/JPY…)",
+      aside_title: "Strategic roadmap 2025",
+      phase1_title: "Legal structure",
+      phase1_text:
+        "Wyoming LLC in the US, EIN application, dedicated bank account and Stripe connection for future subscription management.",
+      phase2_title: "AI backend & APIs",
+      phase2_text:
+        "Development of analyze, backtest and notify APIs, integration of AI models and Stripe webhooks for secure account handling.",
+      phase3_title: "Web dashboard",
+      phase3_text:
+        "16:9 desktop-optimized interface, multilingual support, Forex pair selector, TP/SL suggestions, backtest section and configurable alerts.",
+      phase4_title: "Closed beta & tuning",
+      phase4_text:
+        "Initial access for a small group of traders, real-world feedback, algorithm fine-tuning and sustainable subscription plans.",
+      form_title: "Join the waiting list",
+      form_subtitle:
+        "Fill out the form below: we’ll only contact you to update you about the beta and the official launch.",
+      field_name_label: "Full name",
+      field_email_label: "Email address",
+      field_experience_label: "Forex experience level",
+      field_experience_opt1: "Beginner – just getting started",
+      field_experience_opt2: "Intermediate – a few years of experience",
+      field_experience_opt3: "Advanced / professional",
+      field_message_label: "How do you plan to use FX Sentinel Pro?",
+      privacy_text:
+        "I understand that FX Sentinel Pro is an analysis support tool and does not provide personalised financial advice. Trading decisions always remain my own responsibility.",
+      form_hint:
+        "This form will open your email client and send a message to nexitalia.eu@gmail.com.",
+      form_submit: "Send beta application",
+      footer_left:
+        "FX Sentinel Pro is a NEXTITALIA project. No profit is guaranteed; always use your own judgment and proper risk management.",
+      footer_right:
+        "Contact: <a href=\"mailto:nexitalia.eu@gmail.com\">nexitalia.eu@gmail.com</a>"
+    }
+  };
+
+  function setLanguage(lang) {
+    const dict = translations[lang];
+    if (!dict) return;
+
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (!dict[key]) return;
+
+      if (el.tagName.toLowerCase() === "input" || el.tagName.toLowerCase() === "textarea") {
+        el.placeholder = dict[key];
+      } else {
+        if (key === "footer_right") {
+          el.innerHTML = dict[key];
+        } else {
+          el.textContent = dict[key];
+        }
+      }
+    });
+
+    document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
+      btn.classList.toggle("active", btn.getAttribute("data-lang-btn") === lang);
+    });
+  }
+
+  document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const lang = btn.getAttribute("data-lang-btn");
+      setLanguage(lang);
+    });
+  });
+
+  setLanguage("it");
+</script>
 </body>
 </html>
