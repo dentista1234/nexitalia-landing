@@ -52,7 +52,6 @@
       overflow: hidden;
     }
 
-    /* Glow decorativo */
     .page::before {
       content: "";
       position: absolute;
@@ -468,6 +467,15 @@
       color: var(--muted);
     }
 
+    .checkbox-row a {
+      color: #7dd3fc;
+      text-decoration: none;
+    }
+
+    .checkbox-row a:hover {
+      text-decoration: underline;
+    }
+
     .submit-row {
       display: flex;
       align-items: center;
@@ -503,6 +511,23 @@
       filter: brightness(1.05);
     }
 
+    .legal-note {
+      font-size: 10px;
+      color: var(--muted);
+      border-top: 1px solid rgba(15,23,42,0.9);
+      padding-top: 8px;
+      margin-top: 6px;
+    }
+
+    .legal-note a {
+      color: #7dd3fc;
+      text-decoration: none;
+    }
+
+    .legal-note a:hover {
+      text-decoration: underline;
+    }
+
     footer {
       margin-top: auto;
       padding-top: 6px;
@@ -528,6 +553,82 @@
 
     footer a:hover {
       text-decoration: underline;
+    }
+
+    /* Cookie banner */
+    #cookie-banner {
+      position: fixed;
+      inset-inline: 0;
+      bottom: 0;
+      z-index: 50;
+      display: none;
+      padding: 0 16px 16px;
+    }
+
+    #cookie-banner-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      border-radius: 16px;
+      background: rgba(15,23,42,0.97);
+      border: 1px solid rgba(148,163,184,0.8);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.9);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    #cookie-banner-title {
+      font-weight: 600;
+      color: #e5e7eb;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+    }
+
+    #cookie-banner-text {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    #cookie-banner-text a {
+      color: #7dd3fc;
+      text-decoration: none;
+    }
+
+    #cookie-banner-text a:hover {
+      text-decoration: underline;
+    }
+
+    #cookie-banner-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+
+    .btn-cookie {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: rgba(15,23,42,1);
+      color: #e5e7eb;
+      padding: 6px 14px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s ease-out;
+    }
+
+    .btn-cookie.primary {
+      border-color: rgba(15,23,42,0.9);
+      background: radial-gradient(circle at 0 0, #22d3ee, #0ea5e9);
+      color: #020617;
+      font-weight: 600;
+      box-shadow: 0 8px 22px rgba(8,47,73,0.9);
+    }
+
+    .btn-cookie:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
     }
 
     @media (max-width: 900px) {
@@ -584,6 +685,13 @@
       }
       .submit-row .hint {
         text-align: left;
+      }
+      #cookie-banner-inner {
+        font-size: 10px;
+      }
+      #cookie-banner-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
       }
     }
   </style>
@@ -818,10 +926,12 @@
 
           <div class="checkbox-row">
             <input id="privacy" type="checkbox" required>
-            <span data-i18n="privacy_text">
-              Confermo di aver letto e compreso che FX Sentinel Pro è uno strumento
-              di supporto all’analisi e non fornisce consulenza finanziaria
-              personalizzata. Le decisioni operative restano sempre a mio carico.
+            <span data-i18n="privacy_text_html">
+              Confermo di aver letto la
+              <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+              e di aver compreso che FX Sentinel Pro è uno strumento di supporto
+              all’analisi e non fornisce consulenza finanziaria personalizzata.
+              Le decisioni operative restano sempre a mio carico.
             </span>
           </div>
 
@@ -837,6 +947,14 @@
           </div>
         </form>
       </div>
+
+      <div class="legal-note" data-i18n="legal_note_html">
+        Progetto FX Sentinel Pro – in fase di sviluppo, non destinato al momento
+        all’offerta di servizi al pubblico o alla vendita. Nessun servizio
+        commerciale attivo. Titolare del trattamento dati: Giovanni Abbate –
+        Breme (PV), Italia. Per maggiori dettagli consulta la
+        <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+      </div>
     </aside>
   </main>
 
@@ -849,6 +967,30 @@
       Contatto: <a href="mailto:nexitalia.eu@gmail.com">nexitalia.eu@gmail.com</a>
     </span>
   </footer>
+</div>
+
+<!-- Cookie banner -->
+<div id="cookie-banner">
+  <div id="cookie-banner-inner">
+    <div id="cookie-banner-title" data-i18n="cookie_title">
+      Informativa cookie
+    </div>
+    <div id="cookie-banner-text" data-i18n="cookie_text_html">
+      Questo sito utilizza solo cookie tecnici necessari al suo corretto
+      funzionamento e cookie anonimi di base legati all’infrastruttura di
+      hosting (GitHub Pages). Non vengono effettuate profilazioni o analisi
+      marketing. Per saperne di più consulta la
+      <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+    </div>
+    <div id="cookie-banner-actions">
+      <button class="btn-cookie" id="cookie-reject" data-i18n="cookie_reject">
+        Rifiuta cookie non necessari
+      </button>
+      <button class="btn-cookie primary" id="cookie-accept" data-i18n="cookie_accept">
+        Accetta e continua
+      </button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -899,15 +1041,22 @@
       field_experience_opt2: "Intermedio – qualche anno di esperienza",
       field_experience_opt3: "Avanzato / professionista",
       field_message_label: "Come pensi di usare FX Sentinel Pro?",
-      privacy_text:
-        "Confermo di aver letto e compreso che FX Sentinel Pro è uno strumento di supporto all’analisi e non fornisce consulenza finanziaria personalizzata. Le decisioni operative restano sempre a mio carico.",
+      privacy_text_html:
+        "Confermo di aver letto la <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a> e di aver compreso che FX Sentinel Pro è uno strumento di supporto all’analisi e non fornisce consulenza finanziaria personalizzata. Le decisioni operative restano sempre a mio carico.",
       form_hint:
         "Il modulo invierà una mail a nexitalia.eu@gmail.com con i dati che hai inserito.",
       form_submit: "Invia candidatura alla beta",
+      legal_note_html:
+        "Progetto FX Sentinel Pro – in fase di sviluppo, non destinato al momento all’offerta di servizi al pubblico o alla vendita. Nessun servizio commerciale attivo. Titolare del trattamento dati: Giovanni Abbate – Breme (PV), Italia. Per maggiori dettagli consulta la <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>.",
       footer_left:
         "FX Sentinel Pro è un progetto NEXTITALIA. Nessuna garanzia di profitto; usa sempre il tuo giudizio e una corretta gestione del rischio.",
       footer_right:
-        "Contatto: <a href=\"mailto:nexitalia.eu@gmail.com\">nexitalia.eu@gmail.com</a>"
+        "Contatto: <a href=\"mailto:nexitalia.eu@gmail.com\">nexitalia.eu@gmail.com</a>",
+      cookie_title: "Informativa cookie",
+      cookie_text_html:
+        "Questo sito utilizza solo cookie tecnici necessari al suo corretto funzionamento e cookie anonimi di base legati all’infrastruttura di hosting (GitHub Pages). Non vengono effettuate profilazioni o analisi marketing. Per saperne di più consulta la <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>.",
+      cookie_accept: "Accetta e continua",
+      cookie_reject: "Rifiuta cookie non necessari"
     },
     en: {
       brand_tagline: "AI • Trading • Technology",
@@ -955,15 +1104,22 @@
       field_experience_opt2: "Intermediate – a few years of experience",
       field_experience_opt3: "Advanced / professional",
       field_message_label: "How do you plan to use FX Sentinel Pro?",
-      privacy_text:
-        "I understand that FX Sentinel Pro is an analysis support tool and does not provide personalised financial advice. Trading decisions always remain my own responsibility.",
+      privacy_text_html:
+        "I confirm that I have read the <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a> and understand that FX Sentinel Pro is an analysis support tool and does not provide personalised financial advice. Trading decisions always remain my own responsibility.",
       form_hint:
         "This form will open your email client and send a message to nexitalia.eu@gmail.com.",
       form_submit: "Send beta application",
+      legal_note_html:
+        "FX Sentinel Pro is an early-stage project, currently not intended as a public offer of services or sale. No commercial service is active. Data controller: Giovanni Abbate – Breme (PV), Italy. For more details, please read the <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>.",
       footer_left:
         "FX Sentinel Pro is a NEXTITALIA project. No profit is guaranteed; always use your own judgment and proper risk management.",
       footer_right:
-        "Contact: <a href=\"mailto:nexitalia.eu@gmail.com\">nexitalia.eu@gmail.com</a>"
+        "Contact: <a href=\"mailto:nexitalia.eu@gmail.com\">nexitalia.eu@gmail.com</a>",
+      cookie_title: "Cookie notice",
+      cookie_text_html:
+        "This website only uses technical cookies necessary for its proper operation and basic anonymous cookies related to the hosting infrastructure (GitHub Pages). No profiling or marketing analysis is performed. For more details, see the <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>.",
+      cookie_accept: "Accept and continue",
+      cookie_reject: "Reject non-essential cookies"
     }
   };
 
@@ -977,10 +1133,11 @@
       const key = el.getAttribute("data-i18n");
       if (!dict[key]) return;
 
-      if (el.tagName.toLowerCase() === "input" || el.tagName.toLowerCase() === "textarea") {
+      const tag = el.tagName.toLowerCase();
+      if (tag === "input" || tag === "textarea") {
         el.placeholder = dict[key];
       } else {
-        if (key === "footer_right") {
+        if (key.endsWith("_html")) {
           el.innerHTML = dict[key];
         } else {
           el.textContent = dict[key];
@@ -1002,5 +1159,6 @@
 
   setLanguage("it");
 </script>
+<script src="cookie.js"></script>
 </body>
 </html>
